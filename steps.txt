@@ -1,0 +1,94 @@
+echo "# DVC-ML-Demo-AIops" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/sidh1603/DVC-ML-Demo-AIops.git
+git push -u origin main
+
+
+## steps ##
+
+conda create -n dvc-ml python-3.7 -y
+conda activate dvc-ml
+git init
+git remote add origin https://github.com/sidh1603/DVC-ML-Demo-AIops.git
+git branch -M main
+
+touch .gitignore
+touch README.md
+
+on .gitignore file make the changes add .idea/
+
+after changing 
+git status
+git add .
+git commit -m ""
+git push origin main
+
+touch requirements.txt
+in requirements file add dvc,pandas, scikit-learn
+
+pip install -r requirements.txt
+
+git status
+git add requirements.txt
+git commit -m "requirements added"
+
+git push origin main
+
+dvc init
+
+mkdir -p src/utils
+
+touch src/utils/__init__.py
+
+touch src/__init__.py
+
+touch params.yaml dvc.yaml
+
+mkdir config
+in config folder make a file config.yaml
+
+git add .
+git commit -m ""
+git push origin main
+
+
+in config.yaml file 
+add the path where our data is
+
+data_source: http://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/winequality-red.csv
+
+artifacts:
+   artifacts_dir: artifacts
+   raw_local_dir: raw_local_dir
+   raw_local_file: data.csv
+   
+now in src folder make 1 file
+
+touch src/stage_01_load_save.py
+
+now in utils create a file
+
+touch src/utils/all_utils.py
+
+then make a changes in all_utils.py
+
+import yaml
+import os
+
+def read_yaml(path_to_yaml: str) -> dict:
+    with open(path_to_yaml) as yaml_file:
+        content = yaml.safe_load(yaml_file)
+
+    return content
+
+def create_directory(dirs: list):
+    for dir_path in dirs:
+        os.makedirs(dir_path, exit_ok = True)
+        print(f"directory is created at {dir_path}")
+		
+		
+
+
